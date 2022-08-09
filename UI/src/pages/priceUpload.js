@@ -16,10 +16,6 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 const columnDefs = [
-	// {
-	// 	headerName: 'Brand', children: [{ field: 'Mit' },
-	// 	{ field: 'Code' },]
-	// },
 	{ field: 'Mit' },
 	{ field: 'Code' },
 	{ field: 'CurrencyCode' },
