@@ -27,6 +27,8 @@ const Reports = () => {
     const [progress, setProgress] = React.useState(0);
     const [showProgress, setShowProgress] = React.useState(false);
     const [showPrs, setShowPrs] = React.useState(false);
+    const [showMpf, setShowMpf] = React.useState(false);
+    const [showMost, setShowMost] = React.useState(false);
 
     React.useEffect(() => {
         const timer = setInterval(() => {
@@ -43,12 +45,24 @@ const Reports = () => {
             clearInterval(timer);
         };
     }, []);
-    const title = ['MPF', 'OSRO', 'Macau Pension', 'MSUT', 'MIT', 'PRS', 'PHDAA']
+    const title = ['MPF', 'OSRO', 'MOST', 'Macau Pension', 'MSUT', 'MIT', 'PRS', 'PHDAA']
 
     const handleChange = (event) => {
         const data = event.target.value.map((item) => {
             return item;
         })
+
+        if (data.includes('MPF')) {
+            setShowMpf(true)
+        } else {
+            setShowMpf(false)
+        }
+
+        if (data.includes('MOST')) {
+            setShowMost(true)
+        } else {
+            setShowMost(false)
+        }
 
         if (data[0] === 'PRS') {
             setShowPrs(true)
@@ -183,20 +197,24 @@ const Reports = () => {
                                 width: 985, borderRadius: '15px',
                                 marginbottom: '15px', border: '1.5px solid'
                             }} >
-                                <Collapse onChange={onCollapseChange} style={{ fontSize: "18px" }}>
-                                    <Panel header="MPF" key="1">
-                                        <p style={{ fontSize: "18px" }}><ExclamationCircleOutlined style={{ color: 'blue', fontSize: "20px", fontWeight: "bold" }} /> Import and process - In-Progress </p>
-                                        <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate CF Report - Completed</p>
-                                        <p style={{ fontSize: "18px" }}><CloseCircleOutlined style={{ color: 'red', fontSize: "20px", fontWeight: "bold" }} /> Generate Fields - Failed-Exception message</p>
-                                    </Panel>
-                                </Collapse>
-                                <Collapse onChange={onCollapseChange} style={{ fontSize: "18px" }}>
-                                    <Panel header="MOST" key="1">
-                                        <p style={{ fontSize: "18px" }}><StopOutlined style={{ color: 'red', fontSize: "20px", fontWeight: "bold" }} /> Import and process - Invalid Data</p>
-                                        <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate CF Report - Successfully Completed</p>
-                                        <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate Fields - Successfully Completed</p>
-                                    </Panel>
-                                </Collapse>
+                                {showMpf &&
+                                    <Collapse onChange={onCollapseChange} style={{ fontSize: "18px" }}>
+                                        <Panel header="MPF" key="1">
+                                            <p style={{ fontSize: "18px" }}><ExclamationCircleOutlined style={{ color: 'blue', fontSize: "20px", fontWeight: "bold" }} /> Import and process - In-Progress </p>
+                                            <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate CF Report - Completed</p>
+                                            <p style={{ fontSize: "18px" }}><CloseCircleOutlined style={{ color: 'red', fontSize: "20px", fontWeight: "bold" }} /> Generate Fields - Failed-Exception message</p>
+                                        </Panel>
+                                    </Collapse>
+                                }
+                                {showMost &&
+                                    <Collapse onChange={onCollapseChange} style={{ fontSize: "18px" }}>
+                                        <Panel header="MOST" key="1">
+                                            <p style={{ fontSize: "18px" }}><StopOutlined style={{ color: 'red', fontSize: "20px", fontWeight: "bold" }} /> Import and process - Invalid Data</p>
+                                            <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate CF Report - Successfully Completed</p>
+                                            <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate Fields - Successfully Completed</p>
+                                        </Panel>
+                                    </Collapse>
+                                }
                             </Card>
                         </Col>
                     </Row>
