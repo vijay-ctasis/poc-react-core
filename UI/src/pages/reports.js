@@ -198,11 +198,8 @@ const Reports = () => {
                                     </Panel>
                                 </Collapse>
                             </Card>
-
                         </Col>
-
                     </Row>
-
                 </div>
             </div >
         </>
