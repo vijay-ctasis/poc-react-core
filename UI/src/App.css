@@ -1,0 +1,70 @@
+@import '~antd/dist/antd.css';
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+/* @import 'antd/dist/antd.variable.min.css'; */
+.trigger {
+  padding: 0 24px;
+  font-size: 18px;
+  line-height: 64px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  height: 32px;
+  margin: 16px;
+  text-align: center;
+  color: rgb(255 255 255 / 30%);
+  font-size: medium;
+  font-weight: bold;
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
+
+.searchWrap {
+  display: flex;
+  align-items: center;
+  height: 50px;
+
+}
+
+.searchWrap .location {
+  display: flex;
+  align-items: center;
+  margin: 2px;
+}
+
+.ant-btn-primary {
+  background: linear-gradient(135deg, #3b6e34 0%, #3b6e34 100%);
+  border-color: #3b6e34;
+
+}
+
+.ant-input-affix-wrapper:hover {
+  border-color: #3b6e34 !important;
+}
+
+.ant-btn-primary:hover {
+  background-color: #3b6e34 !important;
+  border-color: #3b6e34 !important;
+}
+
+.ant-menu-dark.ant-menu-dark:not(.ant-menu-horizontal) .ant-menu-item-selected {
+  background-color: #3b6e34;
+}
+
+.ant-tabs-tab:hover {
+  color: #3b6e34;
+}
+
+.ant-tabs-tab.ant-tabs-tab-active .ant-tabs-tab-btn {
+  color: #3b6e34;
+  text-shadow: 0 0 0.25px currentcolor;
+}
