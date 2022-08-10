@@ -57,8 +57,8 @@ function App() {
         <Sider trigger={null} collapsible collapsed={collapsed}>
           {/* <div className="logo" ><h3>POC</h3></div> */}
           <div className="logo">
-            <PauseOutlined style={{ color: "green", fontSize: style.fontSize }} />
-            <PauseOutlined style={{ color: "green", fontSize: style.fontSize, marginLeft: '-18px' }} />
+            <PauseOutlined style={{ color: "black", fontSize: style.fontSize, marginTop: "18px" }} />
+            <PauseOutlined style={{ color: "black", fontSize: style.fontSize, marginLeft: '-19px' }} />
             {/* <img src="/download.png"  /> */}
             {/* <span className='logoTitle'>
               TEST
@@ -93,16 +93,19 @@ function App() {
 
         </Sider>
         <Layout className="site-layout">
+
           <Header
             className="site-layout-background"
             style={{
               padding: 0,
+              fontSize: '25px',
             }}
           >
             {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
               onClick: () => setCollapsed(!collapsed),
             })}
+            Sample
             <Button type="primary" style={{ float: "right", margin: "12px" }} icon={<UserOutlined />} size='large'>
               Login
             </Button>
