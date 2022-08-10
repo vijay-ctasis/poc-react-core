@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { BrowserRouter, Route, Routes, Link } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Link, Navigate, Router } from 'react-router-dom'
 import './App.css';
 import {
   MenuFoldOutlined,
@@ -19,6 +19,7 @@ import Resources from './pages/resources';
 import PriceUpload from './pages/priceUpload';
 import ToDoList from './pages/toDoList';
 import style from './common/style';
+import Login from './pages/login';
 
 const { Header, Content, Sider } = Layout;
 function getItem(label, key, icon, children, type) {
@@ -51,6 +52,7 @@ function App() {
       setOpenKeys(latestOpenKey ? [latestOpenKey] : []);
     }
   };
+
   return (
     <BrowserRouter>
       <Layout>
@@ -106,9 +108,11 @@ function App() {
               onClick: () => setCollapsed(!collapsed),
             })}
             Sample
-            <Button type="primary" style={{ float: "right", margin: "12px" }} icon={<UserOutlined />} size='large'>
-              Login
-            </Button>
+            <Link to="/login">
+              <Button type="primary" style={{ float: "right", margin: "12px" }} icon={<UserOutlined />} size='large'>
+                Login
+              </Button>
+            </Link>
           </Header>
           <Content style={{ margin: '24px 16px', padding: 24, background: '#fff', minHeight: 700 }}>
             <Routes>
@@ -118,6 +122,7 @@ function App() {
               <Route path="/resources" element={<Resources />} />
               <Route path="/priceupload" element={<PriceUpload />} />
               <Route path="/todolist" element={<ToDoList />} />
+              <Route path="/login" element={<Login />} />
             </Routes>
           </Content>
         </Layout>
