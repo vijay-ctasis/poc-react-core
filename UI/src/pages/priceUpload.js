@@ -16,13 +16,13 @@ import 'ag-grid-community/dist/styles/ag-grid.css';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 
 const columnDefs = [
-	{ field: 'Mit' },
-	{ field: 'Code' },
-	{ field: 'CurrencyCode' },
-	{ field: 'Subscription' },
-	{ field: 'Redemption' },
-	{ field: 'Expense' },
-	{ field: 'Net' },
+	{ field: 'Mit', type: 'dimension', cellRenderer: productCellRenderer },
+	{ field: 'Code', type: 'dimension', cellRenderer: productCellRenderer },
+	{ field: 'CurrencyCode', type: 'dimension', cellRenderer: productCellRenderer },
+	{ field: 'Subscription', type: 'dimension', cellRenderer: productCellRenderer },
+	{ field: 'Redemption', type: 'dimension', cellRenderer: productCellRenderer },
+	{ field: 'Expense', type: 'dimension', cellRenderer: productCellRenderer },
+	{ field: 'Net', type: 'dimension', cellRenderer: productCellRenderer },
 ]
 
 const rowData = [
@@ -63,6 +63,15 @@ const rowData = [
 		Net: 19
 	},
 	{
+		Mit: 'Tohn Brown',
+		Code: 'as',
+		CurrencyCode: 'FDF',
+		Subscription: 78,
+		Redemption: 45,
+		Expense: '$1,565',
+		Net: 10
+	},
+	{
 		Mit: 'Tisabled User',
 		Code: 'kk',
 		CurrencyCode: 'AS',
@@ -91,6 +100,22 @@ const rowData = [
 	},
 ];
 
+function numberParser(params) {
+	return parseInt(params.newValue);
+}
+
+function productCellRenderer(params) {
+	if (params.value === undefined || params.value === null) {
+		return null;
+	} else {
+		return (
+			<React.Fragment>
+				{params.value}
+			</React.Fragment>
+		);
+	}
+}
+
 const PriceUpload = () => {
 	const [componentSize, setComponentSize] = useState('default');
 	const [componentDisabled, setComponentDisabled] = useState(true);
@@ -100,6 +125,8 @@ const PriceUpload = () => {
 		setComponentDisabled(disabled);
 	};
 
+	const containerStyle = useMemo(() => ({ width: '100%', height: '100%' }), []);
+
 	const defaultColDef = useMemo(() => {
 		return {
 			sortable: true,
@@ -107,6 +134,21 @@ const PriceUpload = () => {
 			filter: true,
 			minWidth: 120,
 			flex: 1,
+		};
+	}, []);
+
+	const columnTypes = useMemo(() => {
+		return {
+			numberValue: {
+				enableValue: true,
+				aggFunc: 'sum',
+				editable: true,
+				valueParser: numberParser,
+			},
+			dimension: {
+				enableRowGroup: true,
+				enablePivot: true,
+			},
 		};
 	}, []);
 
@@ -166,12 +208,18 @@ const PriceUpload = () => {
 						<p className="ant-upload-text">Click or drag file to this area to upload</p>
 					</Dragger>
 					<div className="grid-wrapper">
-						<div style={{ height: 345, width: '100%', marginTop: '35px' }} className="ag-theme-alpine" >
-							<AgGridReact
-								rowData={rowData}
-								columnDefs={columnDefs}
-								defaultColDef={defaultColDef}
-							></AgGridReact>
+						<div style={containerStyle}>
+							<div style={{ height: 345, width: '100%', marginTop: '35px' }} className="ag-theme-alpine" >
+								<AgGridReact
+									rowData={rowData}
+									columnDefs={columnDefs}
+									defaultColDef={defaultColDef}
+									columnTypes={columnTypes}
+									groupDefaultExpanded={-1}
+									rowGroupPanelShow={'always'}
+									animateRows={true}
+								></AgGridReact>
+							</div>
 						</div>
 					</div>
 				</Form>

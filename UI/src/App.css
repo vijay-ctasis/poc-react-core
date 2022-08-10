@@ -16,9 +16,11 @@
 }
 
 .logo {
-  height: 32px;
-  margin: 16px;
+  height: auto;
+  width: auto;
   text-align: center;
+  background-color: rgb(7, 92, 7);
+  min-height: 65px;
   color: rgb(255 255 255 / 30%);
   font-size: medium;
   font-weight: bold;
