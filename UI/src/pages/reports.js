@@ -197,24 +197,25 @@ const Reports = () => {
                                 width: 985, borderRadius: '15px',
                                 marginbottom: '15px', border: '1.5px solid'
                             }} >
-                                {showMpf &&
-                                    <Collapse onChange={onCollapseChange} style={{ fontSize: "18px" }}>
-                                        <Panel header="MPF" key="1">
+                                <Collapse accordion onChange={onCollapseChange} style={{ fontSize: "18px", width: 900, display: 'flex' }}>
+                                    <Panel header="Summary" key="0" style={{ width: 900 }} >
+                                        <p style={{ fontSize: "18px" }}><ExclamationCircleOutlined style={{ color: 'blue', fontSize: "20px", fontWeight: "bold" }} /> Import and process - In-Progress </p>
+                                        <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate CF Report - Completed</p>
+                                        <p style={{ fontSize: "18px" }}><CloseCircleOutlined style={{ color: 'red', fontSize: "20px", fontWeight: "bold" }} /> Generate Fields - Failed-Exception message</p>
+                                    </Panel>
+                                    {showMpf &&
+                                        <Panel header="MPF" key="1" style={{ width: 900 }} >
                                             <p style={{ fontSize: "18px" }}><ExclamationCircleOutlined style={{ color: 'blue', fontSize: "20px", fontWeight: "bold" }} /> Import and process - In-Progress </p>
                                             <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate CF Report - Completed</p>
                                             <p style={{ fontSize: "18px" }}><CloseCircleOutlined style={{ color: 'red', fontSize: "20px", fontWeight: "bold" }} /> Generate Fields - Failed-Exception message</p>
-                                        </Panel>
-                                    </Collapse>
-                                }
-                                {showMost &&
-                                    <Collapse onChange={onCollapseChange} style={{ fontSize: "18px" }}>
-                                        <Panel header="MOST" key="1">
+                                        </Panel>}
+                                    {showMost &&
+                                        <Panel header="MOST" key="2" style={{ width: 900 }} >
                                             <p style={{ fontSize: "18px" }}><StopOutlined style={{ color: 'red', fontSize: "20px", fontWeight: "bold" }} /> Import and process - Invalid Data</p>
                                             <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate CF Report - Successfully Completed</p>
                                             <p style={{ fontSize: "18px" }}><CheckCircleOutlined style={{ color: 'green', fontSize: "20px", fontWeight: "bold" }} /> Generate Fields - Successfully Completed</p>
-                                        </Panel>
-                                    </Collapse>
-                                }
+                                        </Panel>}
+                                </Collapse>
                             </Card>
                         </Col>
                     </Row>
